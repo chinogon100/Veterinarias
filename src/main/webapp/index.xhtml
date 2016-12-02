@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+
+<ui:composition template="plantilla.xhtml">
+	<ui:define name="pageTitle">Tipo Usuario</ui:define>
+
+
+
+	<ui:define name="contenido">
+		<h:form>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+
+			<div class="form-group">
+				<label>Codigo:</label>
+				<h:outputText value="#{tipo_usuario_bean.newTipoUsuario.codigo}" id="txtCodigo"
+					class="form-control" />
+				<h:message for="txtCodigo" />
+			</div>
+			<div class="form-group">
+				<label for="exampleInputPassword1">Tipo de Usuario:</label>
+				<h:inputText value="#{tipo_usuario_bean.newTipoUsuario.tipo}" id="txtTipo"
+					class="form-control" />
+				<h:message for="txtTipo" />
+			</div>
+			
+			<h:commandButton value="(+) Usuario"
+				action="#{tipo_usuario_bean.agregarUsuario()}"
+				class="btn btn-default">
+			</h:commandButton>
+
+			<div class="form-group">
+				<h:dataTable
+					value="#{tipo_usuario_bean.newTipoUsuario.listaUsuarios}"
+					var="usuario" class="table" id="tablaUsuarios">
+					<h:column>
+						<f:facet name="header">Codigo</f:facet>
+						<h:inputText id="usrcodigo" value="#{usuario.codigo}"
+							class="form-control" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Correo</f:facet>
+						<h:inputText id="usrcorreo" value="#{usuario.correo}"
+							class="form-control" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						<h:inputText id="usrnombre" value="#{usuario.nombre}"
+							class="form-control" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Password</f:facet>
+						<h:inputText id="usrpassword" value="#{usuario.password}"
+							class="form-control" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Username</f:facet>
+						<h:inputText id="usrname" value="#{usuario.username}"
+							class="form-control" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Borrar</f:facet>
+						<h:commandButton id="usrboton" value="Borrar"
+							action="#{tipo_usuario_bean.borraVistaUsuario(usuario)}"
+							class="btn btn-danger" />
+					</h:column>
+				</h:dataTable>
+			</div>
+			
+
+			<h:commandButton value="Guardar" action="#{tipo_usuario_bean.guardar()}"
+				class="btn btn-success" />
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
